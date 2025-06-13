@@ -1,0 +1,243 @@
+### Get semua user
+GET http://localhost:5000/user
+
+### Tambah user
+POST http://localhost:5000/user
+Content-Type: application/json
+
+{
+    "nama": "Budi",
+    "username": "budi123",
+    "password": "rahasia",
+    "no_hp": "08123456789",
+    "level": "admin"
+}
+
+### Update user
+PATCH http://localhost:5000/user/1
+Content-Type: application/json
+
+{
+    "nama": "Budi Santoso",
+    "username": "budi123",
+    "password": "rahasia",
+    "no_hp": "08123456789",
+    "level": "pelanggan"
+}
+
+### Get user by id
+GET http://localhost:5000/user/1
+
+### Delete user
+DELETE http://localhost:5000/user/3
+
+
+
+### Get semua layanan
+GET http://localhost:5000/layanan
+
+###
+POST http://localhost:5000/layanan
+Content-Type: application/json
+
+{
+    "nama_layanan": "Cuci Mobil",
+    "tarif": 50000
+}
+
+###
+PATCH http://localhost:5000/layanan/1
+Content-Type: application/json
+
+{
+    "nama_layanan": "Cuci Mobil Premium",
+    "tarif": 75000
+}
+
+###
+GET http://localhost:5000/layanan/1
+
+###
+DELETE http://localhost:5000/layanan/1
+
+### Get semua info
+GET http://localhost:5000/info
+
+###
+POST http://localhost:5000/info
+Content-Type: application/json
+
+{
+    "isi_info": "Promo bulan ini: diskon 20%"
+}
+
+###
+PATCH http://localhost:5000/info/1
+Content-Type: application/json
+
+{
+    "isi_info": "Promo bulan ini: diskon 25%"
+}
+
+###
+GET http://localhost:5000/info/1
+
+###
+DELETE http://localhost:5000/info/1
+
+### Get semua bulan
+GET http://localhost:5000/bulan
+
+###
+POST http://localhost:5000/bulan
+Content-Type: application/json
+
+{
+    "nama_bulan": "Desember"
+}
+
+###
+PATCH http://localhost:5000/bulan/1
+Content-Type: application/json
+
+{
+    "nama_bulan": "Juli"
+}
+
+###
+GET http://localhost:5000/bulan/1
+
+###
+DELETE http://localhost:5000/bulan/1
+
+
+### Get semua pelanggan
+GET http://localhost:5000/pelanggan
+
+###
+POST http://localhost:5000/pelanggan
+Content-Type: application/json
+
+{
+    "alamat": "Jl. Mawar 1",
+    "nama_pelanggan": "Budi",
+    "no_hp": "08123456789",
+    "status": "aktif",
+    "id_layanan": 1,
+    "id_user": 1
+}
+
+###
+PATCH http://localhost:5000/pelanggan/1
+Content-Type: application/json
+
+{
+    "alamat": "Jl. Melati 2",
+    "nama_pelanggan": "Budi Santoso",
+    "no_hp": "08123456789",
+    "status": "nonaktif",
+    "id_layanan": 1,
+    "id_user": 1
+}
+
+###
+GET http://localhost:5000/pelanggan/1
+
+###
+DELETE http://localhost:5000/pelanggan/1
+
+### Get semua pakai
+GET http://localhost:5000/pakai
+
+###
+POST http://localhost:5000/pakai
+Content-Type: application/json
+
+{
+    "akhir": 120,
+    "awal": 100,
+    "pakai": 20,
+    "tahun": 2025,
+    "id_bulan": 1,
+    "id_pelanggan": 1,
+    
+}
+
+###
+PATCH http://localhost:5000/pakai/1
+Content-Type: application/json
+
+{
+    "akhir": 130,
+    "awal": 120,
+    "pakai": 10,
+    "tahun": 2025,
+    "id_bulan": 1,
+    "id_pelanggan": 1
+}
+
+###
+GET http://localhost:5000/pakai/1
+
+###
+DELETE http://localhost:5000/pakai/1
+
+### Get semua tagihan
+GET http://localhost:5000/tagihan
+
+###
+POST http://localhost:5000/tagihan
+Content-Type: application/json
+
+{
+    "status": "belum bayar",
+    "tagihan": 150000,
+    "id_pakai": 1
+}
+
+###
+PATCH http://localhost:5000/tagihan/1
+Content-Type: application/json
+
+{
+    "status": "sudah bayar",
+    "tagihan": 150000,
+    "id_pakai": 1
+}
+
+###
+GET http://localhost:5000/tagihan/1
+
+###
+DELETE http://localhost:5000/tagihan/1
+
+### Get semua pembayaran
+GET http://localhost:5000/pembayaran
+
+###
+POST http://localhost:5000/pembayaran
+Content-Type: application/json
+
+{
+    "tgl_bayar": "2025-06-10",
+    "uang_bayar": 200000,
+    "uang_kembalian": 50000,
+    "id_tagihan": 1
+}
+
+###
+PATCH http://localhost:5000/pembayaran/1
+Content-Type: application/json
+
+{
+    "tgl_bayar": "2025-06-11",
+    "uang_bayar": 200000,
+    "uang_kembalian": 50000,
+    "id_tagihan": 1
+}
+
+###
+GET http://localhost:5000/pembayaran/1
+
+###
+DELETE http://localhost:5000/pembayaran/1
