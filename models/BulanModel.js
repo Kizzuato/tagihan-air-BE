@@ -15,6 +15,6 @@ const Bulan = db.define('bulan',{ // Table name is 'bulan'
 
 export default Bulan;
 
-(async()=>{
-    await db.sync();
-})();
+//(async()=>{
+    // await db.sync();
+// })();

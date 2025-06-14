@@ -24,6 +24,6 @@ const Pembayaran = db.define('pembayaran', {
 
 export default Pembayaran;
 
-(async () => {
-    await db.sync();
-})();
+// (async () => {
+    // await db.sync();
+// })();

@@ -19,6 +19,6 @@ const User = db.define('user',{ // Table name is 'user'
 
 export default User;
 
-(async()=>{
-    await db.sync();
-})();
+//(async()=>{
+    // await db.sync();
+// })();

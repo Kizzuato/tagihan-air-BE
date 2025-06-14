@@ -32,6 +32,6 @@ const Pelanggan = db.define('pelanggan', {
 
 export default Pelanggan;
 
-(async () => {
-    await db.sync();
-})();
+// (async () => {
+    // await db.sync();
+// })();

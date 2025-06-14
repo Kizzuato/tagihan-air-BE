@@ -15,6 +15,6 @@ const Info = db.define('info',{ // Table name is 'info'
 
 export default Info;
 
-(async()=>{
-    await db.sync();
-})();
+//(async()=>{
+    // await db.sync();
+// })();

@@ -2,6 +2,7 @@ import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
 import Pelanggan from "./PelangganModel.js";
 import Bulan from "./BulanModel.js";
+
 const { DataTypes } = Sequelize;
 
 const Pakai = db.define('pakai', {
@@ -38,6 +39,6 @@ Pakai.belongsTo(Bulan, { foreignKey: 'id_bulan' });
 
 export default Pakai;
 
-(async () => {
-    await db.sync();
-})();
+// (async () => {
+    // await db.sync();
+// })();

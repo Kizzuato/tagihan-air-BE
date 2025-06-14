@@ -16,6 +16,6 @@ const Layanan = db.define('layanan',{ // Table name is 'layanan'
 
 export default Layanan;
 
-(async()=>{
-    await db.sync();
-})();
+//(async()=>{
+    // await db.sync();
+// })();

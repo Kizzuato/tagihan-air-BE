@@ -23,6 +23,6 @@ const Tagihan = db.define('tagihan', {
 
 export default Tagihan;
 
-(async () => {
-    await db.sync();
-})();
+// (async () => {
+    // await db.sync();
+// })();

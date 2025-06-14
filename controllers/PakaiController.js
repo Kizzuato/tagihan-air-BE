@@ -39,9 +39,7 @@ export const getPakaiById = async (req, res) => {
 export const createPakai = async (req, res) => {
   try {
     const dataPakai = await Pakai.create(req.body);
-    const pelanggan = await Pelanggan.findByPk(req.body.id_pelanggan, {
-      include: [{ model: Layanan }]
-    });
+    const pelanggan = await Pelanggan.findByPk(req.body.id_pelanggan);
     const harga = pelanggan?.Layanan?.harga || 0;
     const jumlahTagihan = (req.body.akhir - req.body.awal) * harga;
     await Tagihan.create({
