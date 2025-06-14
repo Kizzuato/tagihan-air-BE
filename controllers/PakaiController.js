@@ -9,9 +9,9 @@ export const getPakai = async (req, res) => {
   try {
     const response = await Pakai.findAll({
       include: [
-        { model: Pelanggan, attributes: ['nama_pelanggan'] },
-        { model: Bulan, attributes: ['nama_bulan'] }
-      ]
+        { model: Pelanggan, attributes: ["nama_pelanggan"] },
+        { model: Bulan, attributes: ["nama_bulan"] },
+      ],
     });
     res.json(response);
   } catch (error) {
@@ -25,9 +25,9 @@ export const getPakaiById = async (req, res) => {
     const response = await Pakai.findOne({
       where: { id_pakai: req.params.id },
       include: [
-        { model: Pelanggan, attributes: ['nama_pelanggan'] },
-        { model: Bulan, attributes: ['nama_bulan'] }
-      ]
+        { model: Pelanggan, attributes: ["nama_pelanggan"] },
+        { model: Bulan, attributes: ["nama_bulan"] },
+      ],
     });
     res.status(200).json(response);
   } catch (error) {
@@ -45,7 +45,7 @@ export const createPakai = async (req, res) => {
     await Tagihan.create({
       id_pakai: dataPakai.id_pakai,
       tagihan: jumlahTagihan,
-      status: "belum bayar"
+      status: "belum bayar",
     });
     res.status(201).json({ msg: "Pemakaian & Tagihan created" });
   } catch (error) {
@@ -57,7 +57,7 @@ export const createPakai = async (req, res) => {
 export const updatePakai = async (req, res) => {
   try {
     await Pakai.update(req.body, {
-      where: { id_pakai: req.params.id }
+      where: { id_pakai: req.params.id },
     });
     res.status(200).json({ msg: "pakai updated" });
   } catch (error) {
@@ -69,7 +69,7 @@ export const updatePakai = async (req, res) => {
 export const deletePakai = async (req, res) => {
   try {
     await Pakai.destroy({
-      where: { id_pakai: req.params.id }
+      where: { id_pakai: req.params.id },
     });
     res.status(200).json({ msg: "pakai deleted" });
   } catch (error) {
@@ -80,21 +80,30 @@ export const deletePakai = async (req, res) => {
 // GET pakai terakhir berdasarkan pelanggan, bulan, tahun
 export const getLastPakai = async (req, res) => {
   const { pelanggan, bulan, tahun } = req.query;
+
+  console.log("Masuk ke getLastPakai");
+  console.log("Tipe Data:", typeof pelanggan, typeof bulan, typeof tahun);
+  console.table(req.query); // Tampilkan semua query
+
   try {
     const result = await Pakai.findOne({
       where: {
         id_pelanggan: Number(pelanggan),
         id_bulan: Number(bulan),
-        tahun: Number(tahun)
+        tahun: Number(tahun), // pastikan tipe cocok
       },
-      order: [['id_pakai', 'DESC']]
+      order: [["id_pakai", "DESC"]],
     });
+
+    console.log("Result dari query:", result);
+
     if (result) {
-      res.json({ akhir: result.akhir });
+      res.json({ akhir: result.akhir }); // kirim hasil akhir
     } else {
-      res.json({});
+      res.json({ message: "Tidak ditemukan data sebelumnya", akhir: null });
     }
   } catch (err) {
+    console.error("ERROR getLastPakai:", err);
     res.status(500).json({ message: err.message });
   }
 };

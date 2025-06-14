@@ -19,7 +19,7 @@ app.use(LayananRoute);
 app.use(InfoRoute);
 app.use(BulanRoute);
 app.use(PelangganRoute);   
-app.use(PakaiRoute);       
+app.use('/', PakaiRoute);       
 app.use(TagihanRoute);     
 app.use(PembayaranRoute);  
 app.listen(5000, ()=> console.log('server up and running...'));
