@@ -9,6 +9,20 @@ export const getPembayaran = async (req, res) => {
     }
 };
 
+// Ambil pembayaran berdasarkan id_tagihan
+export const getPembayaranByTagihanId = async (req, res) => {
+    try {
+        console.log("aslka: ", req.params.id_tagihan)
+        const response = await Pembayaran.findOne({
+            where: { id_tagihan: req.params.id_tagihan }
+        });
+        res.status(200).json(response);
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ msg: "Gagal mengambil data pembayaran" });
+    }
+};
+
 export const getPembayaranById = async (req, res) => {
     try {
         const response = await Pembayaran.findOne({

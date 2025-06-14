@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import Layanan from "./LayananModel.js";
 const { DataTypes } = Sequelize;
 
 const Pelanggan = db.define('pelanggan', {
@@ -30,6 +31,7 @@ const Pelanggan = db.define('pelanggan', {
     freezeTableName: true
 });
 
+Pelanggan.belongsTo(Layanan, { foreignKey: 'id_layanan' });
 export default Pelanggan;
 
 // (async () => {

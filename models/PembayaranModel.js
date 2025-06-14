@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import Tagihan from "./TagihanModel.js";
 const { DataTypes } = Sequelize;
 
 const Pembayaran = db.define('pembayaran', {
@@ -22,6 +23,7 @@ const Pembayaran = db.define('pembayaran', {
     freezeTableName: true
 });
 
+Pembayaran.belongsTo(Tagihan, { foreignKey: 'id_tagihan' });
 export default Pembayaran;
 
 // (async () => {
