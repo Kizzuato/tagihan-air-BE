@@ -45,7 +45,7 @@ export const createPakai = async (req, res) => {
     await Tagihan.create({
       id_pakai: dataPakai.id_pakai,
       tagihan: jumlahTagihan,
-      status: "Belum Lunas"
+      status: "belum bayar"
     });
     res.status(201).json({ msg: "Pemakaian & Tagihan created" });
   } catch (error) {
