@@ -14,6 +14,7 @@ import './models/relasi.js';
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // untuk parsing form-urlencoded
 app.use(UserRoute);
 app.use(LayananRoute);
 app.use(InfoRoute);

@@ -39,15 +39,29 @@ export const getPakaiById = async (req, res) => {
 export const createPakai = async (req, res) => {
   try {
     const dataPakai = await Pakai.create(req.body);
-    const pelanggan = await Pelanggan.findByPk(req.body.id_pelanggan);
-    const harga = pelanggan?.Layanan?.harga || 0;
-    const jumlahTagihan = (req.body.akhir - req.body.awal) * harga;
+    console.log("bodiii: ", req.body);
+    const pelanggan = await Pelanggan.findByPk(req.body.id_pelanggan, {
+      include: [{ model: Layanan, attributes: ["id_layanan", "tarif"] }],
+    });
+
+    if (!pelanggan?.layanan) {
+      console.log("layanan tidak ditemukan untuk pelanggan ini");
+    }
+
+    const tarif = pelanggan?.layanan?.tarif || 0;
+    const jumlahTagihan =
+      (Number(req.body.akhir) - Number(req.body.awal)) * tarif;
+
     await Tagihan.create({
       id_pakai: dataPakai.id_pakai,
       tagihan: jumlahTagihan,
       status: "belum bayar",
     });
-    res.status(201).json({ msg: "Pemakaian & Tagihan created" });
+
+    res.status(201).json({
+      msg: "Pemakaian & Tagihan created",
+      pelanggan,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -80,11 +94,6 @@ export const deletePakai = async (req, res) => {
 // GET pakai terakhir berdasarkan pelanggan, bulan, tahun
 export const getLastPakai = async (req, res) => {
   const { pelanggan, bulan, tahun } = req.query;
-
-  console.log("Masuk ke getLastPakai");
-  console.log("Tipe Data:", typeof pelanggan, typeof bulan, typeof tahun);
-  console.table(req.query); // Tampilkan semua query
-
   try {
     const result = await Pakai.findOne({
       where: {

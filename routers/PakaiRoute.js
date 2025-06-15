@@ -11,9 +11,9 @@ import {
 const router = express.Router();
 
 router.get('/pakai', getPakai);
+router.post('/pakai', createPakai);
 router.get('/pakai/last', getLastPakai); // <-- Tambahkan ini
 router.get('/pakai/:id', getPakaiById);
-router.post('/pakai', createPakai);
 router.patch('/pakai/:id', updatePakai);
 router.delete('/pakai/:id', deletePakai);
 
